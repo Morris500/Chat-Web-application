@@ -1,20 +1,22 @@
 import React from "react";
-import Home from "./routes/home.js";
-import About from "./routes/about.js";
-import Project from "./routes/project.js";
-import Contact from "./routes/contact.js";
-import { Route, Routes } from "react-router-dom";
+import {StreamChat} from "stream-chat";
+import {Chat} from "stream-chat-react";
+import Cookies from "universal-cookie";
+import { ChannelListContainer, ChannelContainer } from "./components/index.js";
+
+
+const apiKey= "";
+const client = StreamChat.getInstance(apiKey);
 
 function App(params) {
-   return<div>
-    <Routes>
-    <Route path= "/" element={<Home />} />
-   <Route path= "/about" element={<About />} />
-   <Route path= "/project" element={<Project />} />
-   <Route path= "/contact" element={<Contact />} />
-    </Routes>
-   
+   return(
+   <div className="app__wrapper">
+      <Chat client={client} theme="team light">
+         <ChannelListContainer />
+         <ChannelContainer />
+      </Chat>
    </div> 
+   )
 }
 
 export default App;
