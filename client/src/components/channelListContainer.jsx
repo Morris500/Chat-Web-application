@@ -5,6 +5,9 @@ import {ChannelSearch, TeamChannelList, TeamChannelPreview} from "./index";
 import HospitalIcon from "../assets/hospital.png";
 import LogoutIcon from "../assets/logout.png";
 
+const cookies = new Cookies();
+
+
 const SideBar = () => (
     <div className="channel-list__sidebar">
         <div className="channel-list__sidebar__icon1">
@@ -13,11 +16,11 @@ const SideBar = () => (
             </div>
         </div>
         <div className="channel-list__sidebar__icon2">
-            <div className="icon1__inner">
+            <div className="icon1__inner" onClick={logout}>
                 <img src={LogoutIcon} alt="Logout" width="30" />
             </div>
         </div>
-    </div>
+    </div> 
 );
 
 const CompanyHeader = () =>(
@@ -26,7 +29,20 @@ const CompanyHeader = () =>(
     </div>
 )
 
+const logout = () => {
+    cookies. remove('token' );
+    cookies. remove('username' );
+    cookies. remove('fullName');
+    cookies. remove('userId');
+    cookies. remove('phoneNumber')
+    cookies. remove('avatarURL');
+    cookies. remove('hashedPassword');
+
+    window.location.reload();
+}
+
 const ChannelListContainer = () =>{
+    
     return(
         <>
         <SideBar />
