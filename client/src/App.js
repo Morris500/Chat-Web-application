@@ -23,7 +23,7 @@ if (authToken) {
    hashedPassword:cookies.get('hashedPassword'),
   }, authToken) 
 } 
-function App(params) {
+function App() {
    const [createType, setCreateType] = useState('');
    const [isCreating, setIsCreating] = useState(false);
    const [isEditing, setIsEditing] = useState(false);
@@ -37,7 +37,7 @@ function App(params) {
          <ChannelListContainer 
          isCreating={isCreating} 
          setIsCreating={setIsCreating}
-         setCreatType={setCreateType}
+         setCreateType={setCreateType}
          setIsEditing={setIsEditing}
                   />
          <ChannelContainer 
