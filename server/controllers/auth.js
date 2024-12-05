@@ -1,10 +1,10 @@
 import {connect} from "getstream";
 import bcrypt from "bcrypt";
-import StreamChat  from "stream-chat"; 
+import {StreamChat}  from "stream-chat"; 
 import crypto from "crypto";
 import dotenv from "dotenv";
 dotenv.config();
-StreamChat.StreamChat;
+
 
 const APP_ID = process.env.APP_ID;
 const API_KEY = process.env.API_KEY; 
@@ -30,7 +30,7 @@ async function login(req, res) {
         const {username, password} = req.body;
 
     const serverClient = connect(API_KEY, APP_SECRET, APP_ID);
-    const client = StreamChat.getInstance(API_KEY, APP_SECRET);
+    const client =  StreamChat.getInstance(API_KEY, APP_SECRET);
 
     const {users} = await client.queryUsers({name: username});
 console.log(users);
@@ -43,7 +43,7 @@ const success = await bcrypt.compare(password, users[0].hashedPassword);
     const token = serverClient.createUserToken(users[0].id);
     if (success) {
         res.status(200 ).json({
-            token, fullName:users[0].fullName, username, userId: users[o].id 
+            token, fullName:users[0].fullName, username, userId: users[0].id 
         }) ;  
     } else {
         res.status(500).json({message:'Incorrect Password'})

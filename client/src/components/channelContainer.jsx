@@ -32,10 +32,10 @@ const EmptyState = () =>(
       <p>helloe world</p>
       <Channel EmptyStateIndicatior={EmptyState}
       Message={(messagePros, i) => <MessageText key={i} {...messagePros} />} > 
-      <ChannelInner />
+      <ChannelInner setIsEditing={setIsEditing}/>
       </Channel>
     </div>
-  ) 
+  )
 }
 
 export default ChannelContainer

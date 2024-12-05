@@ -1,5 +1,5 @@
 import React from "react";
-import {channelist, ChannelList, userChatContext} from "stream-chat-react";
+import { ChannelList, userChatContext} from "stream-chat-react";
 import Cookies from "universal-cookie";
 import {ChannelSearch, TeamChannelList, TeamChannelPreview} from "./index";
 import HospitalIcon from "../assets/hospital.png";
@@ -30,13 +30,13 @@ const CompanyHeader = () =>(
 )
 
 const logout = () => {
-    cookies. remove('token' );
-    cookies. remove('username' );
-    cookies. remove('fullName');
-    cookies. remove('userId');
-    cookies. remove('phoneNumber')
-    cookies. remove('avatarURL');
-    cookies. remove('hashedPassword');
+    cookies.remove('token' );
+    cookies.remove('username' );
+    cookies.remove('fullName');
+    cookies.remove('userId');
+    cookies.remove('phoneNumber')
+    cookies.remove('avatarURL');
+    cookies.remove('hashedPassword');
 
     window.location.reload();
 }
