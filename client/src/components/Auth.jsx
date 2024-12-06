@@ -32,6 +32,8 @@ const Auth = () => {
 
             const {data} = await axios.post(`${URL}/${isSignup ? "signup" : "login"}`, {fullName, username, password, phoneNumber, avatarURL});
             
+            console.log(data);
+            
             const {token, userId, hashedPassword} = data;
 
             cookies.set('token', token);
@@ -46,6 +48,7 @@ const Auth = () => {
             }
 window.location.reload();
         } catch (error) {
+            console.log('unable to login/signup');
             
         }
        

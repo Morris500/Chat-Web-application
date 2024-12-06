@@ -21,7 +21,7 @@ async function signup (req, res) {
         res.status(200).json({token, fullName, username, userId, hashedPassword, phoneNumber}); 
     } catch (error) {
         console.log(error);
-        res.status(500).json({message: error})
+        res.status(400).json({message: error})
     }
     
 }
@@ -30,23 +30,27 @@ async function login(req, res) {
         const {username, password} = req.body;
 
     const serverClient = connect(API_KEY, APP_SECRET, APP_ID);
-    const client =  StreamChat.getInstance(API_KEY, APP_SECRET);
+    const client =  StreamChat.getInstance(API_KEY, APP_SECRET, APP_ID);
 
-    const {users} = await client.queryUsers({name: username});
+    const {users} = await client.queryUsers({name:username});
 console.log(users);
+console.log(!users.length);
+console.log(users[0].hashedPassword);
 
     if (!users.length) {
-        return res.status(400).json({message:'User not Found'});
+         res.status(400).json({message:'User not Found'});
     }
 const success = await bcrypt.compare(password, users[0].hashedPassword);
+console.log(success);
 
-    const token = serverClient.createUserToken(users[0].id);
+    
     if (success) {
-        res.status(200 ).json({
-            token, fullName:users[0].fullName, username, userId: users[0].id 
+        const token = serverClient.createUserToken(users[0].id);
+        res.status(200).json({
+            token, fullName:users[0].fullName, username, userId:users[0].id 
         }) ;  
     } else {
-        res.status(500).json({message:'Incorrect Password'})
+        res.status(400).json({message:'Incorrect Password'})
     }
     } catch (error) {
         console.log(error);
