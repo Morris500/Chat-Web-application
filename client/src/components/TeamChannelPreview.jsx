@@ -11,7 +11,7 @@ const TeamChannelPreview = ({channel, type}) => {
         </p>
     );
     function DirectPreview() {
-        const members = Object.values(channel.state.member).filter(({user}) => user.id != client.userID)
+        const members = Object.values(channel.state.member).filter(({user}) => user.id !== client.userID)
 
         return (
             <div className='channel-preview__item single'>
@@ -22,7 +22,7 @@ const TeamChannelPreview = ({channel, type}) => {
         )
     }
   return (
-    <div className={channel?.id === activeChannel?.id? "channel-preview__wrapper__selected" : "channel-preview__wrappper" } 
+    <div className={channel?.id === activeChannel?.id ? "channel-preview__wrapper__selected" : "channel-preview__wrappper" } 
     onClick={() => {console.log(channel);  }} >
         {type === 'team' ? <ChannelPreview /> : <DirectPreview />}
     </div>

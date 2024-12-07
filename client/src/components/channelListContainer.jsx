@@ -41,7 +41,7 @@ const logout = () => {
     window.location.reload();
 }
 
-const ChannelListContainer = () =>{
+const ChannelListContainer = ({isCreating, setIsCreating, setCreatType, setIsEditing }) =>{
     
     return(
         <>
@@ -50,12 +50,16 @@ const ChannelListContainer = () =>{
             <CompanyHeader />
             <p>ChannelListContainer</p>
             <ChannelSearch />
-            <ChannelList filters={{}} channelRenderFilterFn={() => {}} List={(listProps) => ( <TeamChannelList {...listProps} type="team" /> )} 
+            <ChannelList filters={{}} channelRenderFilterFn={() => {}} List={(listProps) => ( <TeamChannelList {...listProps} type="team" 
+            isCreating={isCreating} setIsCreating={setIsCreating} setCreatType={setCreatType} setIsEditing={setIsEditing}
+            /> )} 
            
            Preview={(Previewprops) => (<TeamChannelPreview {...Previewprops} type="team" /> )}
            />
 
-            <ChannelList filters={{}} channelRenderFilterFn={() => {}} List={(listProps) => ( <TeamChannelList {...listProps} type="messaging" /> )} 
+            <ChannelList filters={{}} channelRenderFilterFn={() => {}} List={(listProps) => ( <TeamChannelList {...listProps} type="messaging"
+             isCreating={isCreating} setIsCreating={setIsCreating} setCreatType={setCreatType} setIsEditing={setIsEditing}
+            /> )} 
            
            Preview={(Previewprops) => (<TeamChannelPreview {...Previewprops} type="messaging" /> )}
            />

@@ -35,7 +35,7 @@ async function login(req, res) {
     const {users} = await client.queryUsers({name:username});
 console.log(users);
 console.log(!users.length);
-console.log(users[0].hashedPassword);
+console.log(users.hashedPassword);
 
     if (!users.length) {
          res.status(400).json({message:'User not Found'});
