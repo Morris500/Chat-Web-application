@@ -1,7 +1,7 @@
 import React from 'react';
 import { Channel, useChatContext } from 'stream-chat-react';
 import {UserList} from './'
-import {CloseCreateChannel} from '../assets'
+import {CloseCreateChannel} from '../assets/CloseCreateChannel'
 
 
 const ChannelNameInput = ({channelName='', setChannelName}) => {
@@ -19,12 +19,15 @@ const ChannelNameInput = ({channelName='', setChannelName}) => {
 }
 
 const CreateChannel = ({createType, setIscreating}) => {
+  const [channelName, setchannelName] = useState('');
   return(
     <div className='create-channel__container'>
       <div className='create-channel__header'>
         <p>{createType === 'team' ? 'create a New channel' : 'send a Direct Message'}</p>
+        <CloseCreateChannel setIsCreating={setIscreating} />
       </div>
-      <ChannelNameInput />
+      {createType === 'team' && <ChannelNameInput channelName={channelName} setChannelName={setchannelName} />}
+      <UserList />
     </div>
   )
 }
