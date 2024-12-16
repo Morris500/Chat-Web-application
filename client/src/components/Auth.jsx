@@ -26,15 +26,15 @@ const Auth = () => {
     const handelSubmit  =  async (e) =>{
         try {
             e.preventDefault();
-            const {fullName, username, password, phoneNumber, avatarURL} = form;
+            const { username, password, phoneNumber, avatarURL} = form;
     
             const URL ='http://localhost:4000'
 
-            const {data} = await axios.post(`${URL}/${isSignup ? "signup" : "login"}`, {fullName, username, password, phoneNumber, avatarURL});
+            const {data} = await axios.post(`${URL}/${isSignup ? "signup" : "login"}`, {fullName: form.fullName, username, password, phoneNumber, avatarURL});
             
             console.log(data);
             
-            const {token, userId, hashedPassword} = data;
+            const {token, userId, hashedPassword, fullName} = data;
 
             cookies.set('token', token);
             cookies.set('username', username);
@@ -55,8 +55,7 @@ window.location.reload();
     }
 
     const switchMode = () => {
-        setisSignup(!isSignup);
-    }
+        setisSignup((previsSignup) => !previsSignup);    }
 
   return (
     <div className='auth__form-container'>

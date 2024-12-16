@@ -48,7 +48,7 @@ const logout = () => {
     window.location.reload();
 }
 
-const ChannelListContent = ({isCreating, setIsCreating, setCreatType, setIsEditing }) =>{
+const ChannelListContent = ({isCreating, setIsCreating, setCreateType, setIsEditing, setToggelContainer }) =>{
     const {client} = useChatContext();
     const filters = {members:{$in: [client.userID]}}
     return(
@@ -59,23 +59,29 @@ const ChannelListContent = ({isCreating, setIsCreating, setCreatType, setIsEditi
             <p>ChannelListContainer</p>
             <ChannelSearch />
             <ChannelList filters={{filters}} channelRenderFilterFn={customChannelTeamFilter} List={(listProps) => ( <TeamChannelList {...listProps} type="team" 
-            isCreating={isCreating} setIsCreating={setIsCreating} setCreatType={setCreatType} setIsEditing={setIsEditing}
+            isCreating={isCreating} setIsCreating={setIsCreating} setCreatType={setCreateType} setIsEditing={setIsEditing}
+            setToggelContainer={setToggelContainer}
             /> )} 
            
-           Preview={(Previewprops) => (<TeamChannelPreview {...Previewprops} type="team" /> )}
+           Preview={(Previewprops) => (<TeamChannelPreview {...Previewprops} 
+            setCreateType={setCreateType} setIsEditng={setIsEditing} 
+            setToggelContainer={setToggelContainer}type="team" /> )}
            />
 
             <ChannelList filters={{filters}} channelRenderFilterFn={customChannelMessagingFilter} List={(listProps) => ( <TeamChannelList {...listProps} type="messaging"
-             isCreating={isCreating} setIsCreating={setIsCreating} setCreatType={setCreatType} setIsEditing={setIsEditing}
+             isCreating={isCreating} setIsCreating={setIsCreating} setCreatType={setCreateType} setIsEditing={setIsEditing}
+             setToggelContainer={setToggelContainer}
             /> )} 
            
-           Preview={(Previewprops) => (<TeamChannelPreview {...Previewprops} type="messaging" /> )}
+           Preview={(Previewprops) => (<TeamChannelPreview {...Previewprops}
+            setCreateType={setCreateType} setIsEditng={setIsEditing} 
+            setToggelContainer={setToggelContainer}type="messaging" /> )}
            />
 
         </div>
         </>
     )
-}
+}    
 
 const ChannelListContainer = ({setCreateType, setIsCreating, setIsEditing}) => {
 const [toggleContainer, setToggelContainer] = useState(false);
