@@ -3,9 +3,11 @@ import {usechatContext} from "stream-chat-react";
 // import { SearchIcon } from "../assets";
 
 const ChannelSearch = () => {
+const {client, setActiveChannel } = usechatContext();
 const [query, setQuery] = useState('');
 const [loading, setLoading] = useState(false);
-
+const [teamChannels, setTeamChannels] = useState([]);
+const [directChannels, setDirectChannels] = useState([]);
 
 function getchannels(params) {
     try {
