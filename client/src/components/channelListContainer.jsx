@@ -57,7 +57,7 @@ const ChannelListContent = ({isCreating, setIsCreating, setCreateType, setIsEdit
         <div className="channel-list__list__wrapper">
             <CompanyHeader />
             <p>ChannelListContainer</p>
-            <ChannelSearch />
+            <ChannelSearch stToggelContainer={setToggelContainer} />
             <ChannelList filters={{filters}} channelRenderFilterFn={customChannelTeamFilter} List={(listProps) => ( <TeamChannelList {...listProps} type="team" 
             isCreating={isCreating} setIsCreating={setIsCreating} setCreatType={setCreateType} setIsEditing={setIsEditing}
             setToggelContainer={setToggelContainer}
