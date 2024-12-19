@@ -1,6 +1,7 @@
 import React, {useSearch, useEffect, useState} from 'react';
 import {usechatContext} from "stream-chat-react";
 // import { SearchIcon } from "../assets";
+import {ResultsDropdown} from './';
 
 const ChannelSearch = ({setToggelContainer}) => {
 const {client, setActiveChannel } = usechatContext();

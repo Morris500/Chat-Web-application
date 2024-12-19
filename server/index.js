@@ -5,6 +5,11 @@ import cors from "cors";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 dotenv.config();
+// import Twilioclient from 'twilio';
+
+// const accountsid = process.env.TWILIO_ACCOUNT_SID;
+// const authToken = process.env.TWILIO_AUTHTOKEN;
+// twilioclient(accountsid, authToken);
 
 //imported routes
 import authRoutes from "../server/routes/auth.js";
